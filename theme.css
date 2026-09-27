@@ -1,0 +1,540 @@
+/* Ruang Rasa visual refresh: warm cafe workspace with top navigation. */
+.app-shell{display:block;min-height:100vh;background:#f6f0e7}
+.sidebar{position:sticky;top:0;z-index:20;width:100%;height:auto;min-height:86px;padding:0 5.5%;background:#fffaf3;color:#3d3029;border-bottom:1px solid #e8ded2;display:flex;flex-direction:row;align-items:center;gap:24px;box-shadow:0 4px 18px rgba(70,48,30,.05)}
+.brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:238px;padding:8px 12px 7px;margin:-1px 0;background:#fff;line-height:1}.brand-art{height:39px;display:flex;align-items:center;justify-content:center}.brand-art svg{width:112px;height:54px;overflow:visible}.logo-drawing{fill:none;stroke:#4a1e17;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.brand-copy{display:flex;align-items:center;flex-direction:column;gap:3px}.brand-copy strong{color:#4a1e17;font:400 28px/.8 'DM Serif Display',serif;letter-spacing:-1.6px;text-transform:none;white-space:nowrap}.brand-copy small{color:#a04d43;font:700 7px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:1.25px;white-space:nowrap}
+.sidebar nav{display:flex;align-items:center;gap:4px;flex:1;max-width:max-content;padding:6px;border-radius:28px;background:#eaf4df}.nav-item{width:auto;margin:0;padding:12px 18px;border-radius:22px;background:transparent;color:#06777c;font-size:12px;font-weight:700;position:relative;white-space:nowrap}.nav-item span{display:none}.nav-item.active,.nav-item:hover{background:#fff;color:#06777c;box-shadow:0 2px 7px rgba(26,91,73,.12)}.nav-item.active:after{display:none}
+.sidebar-footer{margin-left:auto;padding:0 0 0 18px;border-top:0;border-left:1px solid #dce9d8;color:#5f8985;white-space:nowrap;font-size:10px}.sidebar-footer small{color:#85a59e;margin-top:4px;padding-left:15px}
+.main-content{width:100%;margin-left:0;padding:40px 5.5% 70px;background:linear-gradient(180deg,#f8fbf1 0,#fbfcf7 230px,#f7f8f4 100%)}
+.topbar{margin-bottom:30px}.eyebrow{color:#67948e;letter-spacing:1.5px}.topbar h1{color:#164e57;font-size:30px;letter-spacing:-1.3px}.user-chip>span{background:#d9f0e1;color:#08777c}.user-chip small{color:#67948e}
+.hero-strip{min-height:285px;padding:42px 46px;border-radius:16px;background-image:linear-gradient(90deg,rgba(49,34,25,.9) 0%,rgba(49,34,25,.68) 43%,rgba(49,34,25,.14) 100%),url('https://portal-gcs-cdn.majoo.id/v2/img/new-hero-fnb-sobis.webp');background-color:#734631;background-position:center;background-size:cover;box-shadow:0 18px 34px rgba(100,57,33,.18)}.hero-strip:after{border-color:rgba(255,235,214,.24);right:11%;top:-95px}.hero-strip h2{max-width:500px;font-size:40px;letter-spacing:-1.8px}.hero-strip em{color:#ffc49d}.hero-note{color:#f9e9dc;background:rgba(49,34,25,.28);padding:10px 14px;border-radius:10px;backdrop-filter:blur(5px)}.hero-icon{border-color:rgba(255,235,214,.55)}
+.metrics{gap:14px;margin:18px 0 30px}.metrics article{border:1px solid #dfeadb;border-radius:10px;padding:20px;background:rgba(255,255,255,.9);box-shadow:0 8px 25px rgba(31,93,78,.05)}.metric-label{color:#78938c}.metrics strong{color:#164e57;font-size:24px}.positive{color:#3f9270}
+.content-grid{gap:18px}.panel{border:1px solid #dfeadb;border-radius:10px;box-shadow:0 8px 25px rgba(31,93,78,.045);padding:24px}.panel h3{color:#164e57}.text-button{color:#08777c}.count-badge{background:#e4f3e5;color:#258a77}.order-row,.stock-row{border-color:#e8f0e5}.pill{background:#e8f5e8;color:#3f9270}.stock-row .stock-alert,.stock-alert{color:#d27755}
+.section-heading h2{color:#164e57;font-size:31px}.section-heading p{color:#6e918a}.primary-button{background:#20b7ad;border-radius:7px;box-shadow:0 6px 15px rgba(32,183,173,.23)}.primary-button:hover{background:#099b99}.secondary-button{background:#f2f9e9;border-color:#cbe6ca;color:#08777c;border-radius:7px}
+.toolbar input,input,select{border-color:#dfeadb;background:#fff}.toolbar input:focus,input:focus,select:focus{border-color:#20b7ad;box-shadow:0 0 0 3px rgba(32,183,173,.1)}.data-table th{color:#67948e}.data-table td{border-color:#e8f0e5}.product-item{border-color:#dfeadb;border-radius:8px;background:#fbfdf8}.product-item b{color:#3f9270}.monitor-card{border-color:#dfeadb;border-radius:9px;box-shadow:0 8px 25px rgba(31,93,78,.045)}.monitor-card.alert{border-color:#f0c7b9;background:#fffaf7}.movement-panel{margin-top:18px}
+@media(max-width:900px){.sidebar{padding:0 4%;gap:16px}.brand{min-width:auto}.sidebar nav{overflow:auto}.nav-item{padding:12px 13px}.sidebar-footer{display:none}.main-content{padding:30px 4%}.monitor-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.sidebar{min-height:70px}.brand{min-width:38px}.brand>div{display:none}.sidebar nav{gap:2px;padding:5px;max-width:none;overflow-x:auto}.nav-item{padding:11px 13px;font-size:11px}.nav-item span{display:none}.main-content{padding:24px 4%}.topbar h1{font-size:23px}.hero-strip{padding:28px 25px;min-height:240px;background-position:62% center}.hero-strip h2{font-size:28px}.hero-note{display:none}.monitor-grid{grid-template-columns:1fr}}
+
+/* Editorial coffee landing treatment, while preserving the operational UI. */
+body{background:#f6cba5}
+.app-shell{max-width:1240px;margin:0 auto;background:#f6cba5;padding-bottom:40px}
+.sidebar{max-width:1120px;margin:0 auto;border-radius:0 0 2px 2px;background:#fff}
+.main-content{max-width:1120px;margin:0 auto;padding:34px 6.5% 70px;background:#fff}
+.topbar{margin-bottom:34px}.topbar h1{font:600 34px/1 'Fraunces',serif;color:#4a1e17;letter-spacing:-1.4px}
+.hero-strip{display:flex;align-items:center;min-height:370px;padding:52px 46px;border-radius:0;background-color:#fff;background-image:linear-gradient(90deg,#fff 0%,#fff 39%,rgba(255,255,255,.92) 49%,rgba(255,255,255,0) 68%),url('https://portal-gcs-cdn.majoo.id/v2/img/new-hero-fnb-sobis.webp');background-position:center,right center;background-size:100% 100%,58% 100%;background-repeat:no-repeat;box-shadow:none;overflow:hidden;color:#54211a}.hero-strip:after{display:none}.hero-strip h2{max-width:470px;margin:13px 0;font:600 48px/1.08 'Fraunces',serif;letter-spacing:-2px;color:#54211a}.hero-strip em{color:#c94f48}.hero-note{align-self:flex-end;margin:0 0 16px auto;background:#fff;color:#54211a;border:1px solid #ecd8c8;box-shadow:0 9px 20px rgba(102,47,32,.12);backdrop-filter:none}.hero-note strong{color:#c94f48}.hero-icon{border-color:#c94f48;color:#c94f48}
+.metrics{margin-top:20px}.metrics article{border-radius:0;border-color:#f0e1d5;box-shadow:0 7px 18px rgba(102,47,32,.055)}.metrics strong{color:#54211a}.panel{border-radius:0;border-color:#f0e1d5;box-shadow:0 7px 18px rgba(102,47,32,.045)}.panel h3{color:#54211a}.content-grid{gap:20px}.section-heading h2{font-family:'Fraunces',serif;color:#54211a}.primary-button{background:#c94f48;border-radius:3px;box-shadow:0 5px 12px rgba(201,79,72,.2)}.primary-button:hover{background:#a83d38}.secondary-button{border-radius:3px;background:#fff8f2;border-color:#eccfc0;color:#a7423b}.eyebrow{color:#a8473e}.text-button{color:#a7423b}.count-badge{border-radius:2px;background:#fae6dc;color:#c94f48}.pill{border-radius:2px;background:#f8e6df;color:#a7423b}
+.toolbar input,input,select{border-radius:2px;border-color:#ebd8cb}.product-item,.monitor-card{border-radius:2px;background:#fffdfa;border-color:#f0e1d5}.movement-panel{border-radius:0}
+@media(max-width:900px){.app-shell{padding-bottom:20px}.main-content{padding:30px 4%}.hero-strip{background-size:100% 100%,58% 100%}}
+@media(max-width:580px){body{background:#fff}.app-shell{padding:0}.sidebar,.main-content{max-width:none}.main-content{padding:24px 4%}.hero-strip{min-height:390px;padding:30px 24px;align-items:flex-start;background-image:linear-gradient(180deg,#fff 0%,#fff 46%,rgba(255,255,255,.1) 75%),url('https://portal-gcs-cdn.majoo.id/v2/img/new-hero-fnb-sobis.webp');background-position:center,center bottom;background-size:100% 100%,100% 63%}.hero-strip h2{font-size:37px}.hero-note{display:none}}
+
+/* Classy editorial typography with a contemporary interface voice. */
+body,button,input,select{font-family:'Plus Jakarta Sans',sans-serif}
+.brand strong,.topbar h1,.hero-strip h2,.section-heading h2,.panel h3,.production-card h3,dialog h2{font-family:'DM Serif Display',serif;font-weight:400}
+.brand-mark .bean-r{font-family:'DM Serif Display',serif}
+.brand strong{font-size:23px;letter-spacing:-.9px}.brand small{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:1.4px}
+.topbar h1{font-size:36px;letter-spacing:-1.2px}.hero-strip h2{font-size:50px;letter-spacing:-1.8px}.section-heading h2{font-size:34px;letter-spacing:-.8px}.panel h3{letter-spacing:-.2px}.eyebrow{font-family:'DM Mono',monospace;font-weight:500}
+@media(max-width:580px){.topbar h1{font-size:29px}.hero-strip h2{font-size:37px}.section-heading h2{font-size:30px}}
+@media(max-width:900px){.brand{min-width:190px}.brand-copy strong{font-size:24px}.brand-copy small{font-size:6.5px}.brand-art svg{width:96px}}
+@media(max-width:580px){.brand{min-width:145px;padding:5px 4px}.brand-art{height:28px}.brand-art svg{width:80px;height:42px}.brand-copy{display:flex!important}.brand-copy strong{font-size:19px}.brand-copy small{font-size:5px;letter-spacing:.8px}.sidebar nav{flex:1}.nav-item{padding:11px 10px;font-size:10px}}
+
+/* Unified signature palette: espresso, ivory and copper. */
+:root{--espresso:#2d211d;--espresso-soft:#65463b;--ivory:#f6f0e5;--paper-ivory:#fbf8f1;--copper:#b86443;--copper-dark:#91452f;--sage:#65856f}
+body{background:var(--ivory);color:var(--espresso)}
+.app-shell{background:var(--ivory)}
+.sidebar{background:var(--paper-ivory);border-color:#e5d9ca}.brand{background:var(--paper-ivory)}.brand-copy strong{color:var(--espresso)}.brand-copy small{color:var(--copper-dark)}.logo-drawing{stroke:var(--espresso)}
+.sidebar nav{background:#e9eee1}.nav-item{color:#557269}.nav-item.active,.nav-item:hover{color:var(--espresso);background:#fffdf8}.sidebar-footer{border-color:#e5d9ca;color:var(--sage)}.sidebar-footer small{color:#8da195}
+.main-content{background:linear-gradient(180deg,var(--ivory) 0,#fbf8f1 260px,#f8f8f3 100%)}.topbar h1{color:var(--espresso)}.eyebrow{color:var(--copper-dark)}.user-chip>span{background:#ead9c8;color:var(--copper-dark)}.user-chip small{color:var(--copper-dark)}
+.hero-strip{background-color:var(--espresso);background-image:linear-gradient(90deg,rgba(45,33,29,.94) 0%,rgba(45,33,29,.73) 43%,rgba(45,33,29,.16) 100%),url('https://portal-gcs-cdn.majoo.id/v2/img/new-hero-fnb-sobis.webp');box-shadow:0 18px 34px rgba(45,33,29,.16)}.hero-strip h2{color:#fff9ef}.hero-strip em{color:#e9a27f}.hero-note{color:var(--espresso);border-color:#ead6c5}.hero-note strong{color:var(--copper-dark)}.hero-icon{border-color:var(--copper);color:var(--copper)}
+.metrics article,.panel{border-color:#e8ded0;background:#fffdfa;box-shadow:0 8px 22px rgba(45,33,29,.055)}.metric-label{color:#8d7668}.metrics strong,.panel h3,.section-heading h2{color:var(--espresso)}.positive,.product-item b{color:var(--sage)}.text-button{color:var(--copper-dark)}.count-badge{background:#f4e3d6;color:var(--copper-dark)}.order-row,.stock-row,.data-table td{border-color:#eee5da}.pill{background:#e7f0e6;color:var(--sage)}.stock-row .stock-alert,.stock-alert{color:var(--copper)}
+.primary-button{background:var(--copper);box-shadow:0 6px 15px rgba(184,100,67,.2)}.primary-button:hover{background:var(--copper-dark)}.secondary-button{background:#f6eee5;border-color:#e4cbbb;color:var(--copper-dark)}.toolbar input,input,select{border-color:#e4d8ca;background:#fffdfa}.toolbar input:focus,input:focus,select:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(184,100,67,.11)}.data-table th{color:var(--copper-dark)}.product-item,.monitor-card{border-color:#e8ded0;background:#fffdfa}.monitor-card.alert{border-color:#dfb49b;background:#fff8f2}.movement-type.consume{background:#f8e5da;color:var(--copper-dark)}.movement-type.receive{background:#e7f0e6;color:var(--sage)}
+
+/* =========================================
+   RUANG RASA - SOFT LIME ROSE GRADIENT
+   ========================================= */
+
+:root{
+  --lime:#C2DC80;
+  --pink:#EA9CAF;
+  --rose:#D56989;
+  --soft:#F3EEF1;
+
+  --text-dark:#513B45;
+  --text-soft:#806873;
+  --white:#FFFFFF;
+}
+
+/* =========================
+   BODY
+   ========================= */
+
+body{
+  background:
+    linear-gradient(
+      135deg,
+      #F3EEF1 0%,
+      #F8E8EB 35%,
+      #F4DDE3 65%,
+      #EEF4D9 100%
+    );
+
+  background-attachment:fixed;
+  color:var(--text-dark);
+}
+
+.app-shell{
+  background:transparent;
+}
+
+.main-content{
+  background:
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(194,220,128,.35),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 35%,
+      rgba(234,156,175,.22),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #FFFFFF 0%,
+      #F3EEF1 50%,
+      #F7F1E9 100%
+    );
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar{
+  background:
+    linear-gradient(
+      155deg,
+      #D56989 0%,
+      #C95F7E 35%,
+      #EA9CAF 70%,
+      #C2DC80 125%
+    );
+
+  border-color:rgba(255,255,255,.25);
+}
+
+.brand{
+  background:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.20);
+}
+
+.brand-copy strong{
+  color:#FFFFFF;
+}
+
+.brand-copy small{
+  color:#FCEEF1;
+}
+
+.logo-drawing{
+  stroke:#FFFFFF;
+}
+
+.sidebar nav{
+  background:rgba(255,255,255,.07);
+}
+
+.nav-item{
+  color:#FFFFFF;
+  transition:.25s ease;
+}
+
+.nav-item:hover{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(194,220,128,.90),
+      rgba(234,156,175,.75)
+    );
+
+  color:var(--text-dark);
+}
+
+.nav-item.active{
+  background:
+    linear-gradient(
+      90deg,
+      #FFFFFF,
+      #F8E9ED
+    );
+
+  color:var(--rose);
+}
+
+.sidebar-footer{
+  border-color:rgba(255,255,255,.20);
+  color:#FFF5F7;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.eyebrow{
+  color:var(--rose);
+}
+
+.topbar h1{
+  color:var(--text-dark);
+}
+
+.user-chip>span{
+  background:
+    linear-gradient(
+      135deg,
+      var(--lime),
+      #DCEAAE
+    );
+
+  color:var(--text-dark);
+}
+
+.user-chip small{
+  color:var(--text-soft);
+}
+
+/* =========================
+   HERO
+   FOTO TETAP ADA
+   ========================= */
+
+.hero-strip{
+  background-color:var(--rose);
+
+  background-image:
+    linear-gradient(
+      105deg,
+      rgba(213,105,137,.88) 0%,
+      rgba(234,156,175,.60) 38%,
+      rgba(194,220,128,.30) 75%,
+      rgba(194,220,128,.12) 100%
+    ),
+    url('https://portal-gcs-cdn.majoo.id/v2/img/new-hero-fnb-sobis.webp');
+
+  background-position:center;
+  background-size:cover;
+
+  box-shadow:
+    0 18px 34px rgba(213,105,137,.18);
+}
+
+.hero-strip h2{
+  color:#FFFFFF;
+}
+
+.hero-strip em{
+  color:var(--lime);
+}
+
+.hero-note{
+  color:var(--text-dark);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.94),
+      rgba(243,238,241,.88)
+    );
+
+  border-color:rgba(234,156,175,.45);
+}
+
+.hero-note strong{
+  color:var(--rose);
+}
+
+.hero-icon{
+  border-color:#FFFFFF;
+  color:#FFFFFF;
+}
+
+/* =========================
+   DASHBOARD CARDS
+   ========================= */
+
+.metrics article,
+.panel{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.96),
+      rgba(248,238,241,.90)
+    );
+
+  border-color:rgba(213,105,137,.16);
+
+  box-shadow:
+    0 10px 28px rgba(213,105,137,.08);
+}
+
+.metric-label{
+  color:var(--text-soft);
+}
+
+.metrics strong,
+.panel h3,
+.section-heading h2{
+  color:var(--text-dark);
+}
+
+.positive{
+  color:#718E3F;
+}
+
+.text-button{
+  color:var(--rose);
+}
+
+.count-badge{
+  background:
+    linear-gradient(
+      135deg,
+      var(--lime),
+      #DCE9A9
+    );
+
+  color:var(--text-dark);
+}
+
+.order-row,
+.stock-row,
+.data-table td{
+  border-color:rgba(213,105,137,.12);
+}
+
+.pill{
+  background:
+    linear-gradient(
+      135deg,
+      #E7F0C7,
+      #F4E2E6
+    );
+
+  color:#687844;
+}
+
+.stock-alert{
+  color:var(--rose);
+}
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.primary-button{
+  background:
+    linear-gradient(
+      135deg,
+      #D56989 0%,
+      #C95F7E 48%,
+      #EA9CAF 100%
+    );
+
+  color:#FFFFFF;
+
+  box-shadow:
+    0 7px 18px rgba(213,105,137,.25);
+}
+
+.primary-button:hover{
+  background:
+    linear-gradient(
+      135deg,
+      #C45675,
+      #D56989,
+      #C2DC80
+    );
+}
+
+.secondary-button{
+  background:
+    linear-gradient(
+      135deg,
+      #F5E4E8,
+      #EAF0D8
+    );
+
+  border-color:rgba(194,220,128,.65);
+  color:var(--text-dark);
+}
+
+.secondary-button:hover{
+  background:
+    linear-gradient(
+      135deg,
+      var(--pink),
+      var(--lime)
+    );
+}
+
+/* =========================
+   INPUT
+   ========================= */
+
+.toolbar input,
+input,
+select{
+  background:
+    linear-gradient(
+      135deg,
+      #FFFFFF,
+      #F8F1F3
+    );
+
+  border-color:rgba(213,105,137,.22);
+  color:var(--text-dark);
+}
+
+.toolbar input:focus,
+input:focus,
+select:focus{
+  border-color:var(--rose);
+
+  box-shadow:
+    0 0 0 3px rgba(234,156,175,.22);
+}
+
+/* =========================
+   PRODUCT & STOCK
+   ========================= */
+
+.product-item,
+.monitor-card{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.95),
+      rgba(243,238,241,.85),
+      rgba(242,247,224,.55)
+    );
+
+  border-color:rgba(213,105,137,.14);
+
+  box-shadow:
+    0 7px 20px rgba(213,105,137,.07);
+}
+
+.product-item b{
+  color:var(--rose);
+}
+
+.monitor-card.alert{
+  background:
+    linear-gradient(
+      135deg,
+      #FBE8ED,
+      #F2F6DE
+    );
+
+  border-color:rgba(234,156,175,.55);
+}
+
+/* =========================
+   TABLE
+   ========================= */
+
+.data-table th{
+  color:var(--rose);
+}
+
+.data-table tr:hover{
+  background:
+    linear-gradient(
+      90deg,
+      #FFF4F6,
+      #F4F8E6
+    );
+}
+
+/* =========================
+   DIALOG
+   ========================= */
+
+dialog form{
+  background:
+    linear-gradient(
+      145deg,
+      #FFFFFF,
+      #FBF1F4,
+      #F5F8E9
+    );
+
+  border-color:rgba(213,105,137,.18);
+}
+
+.close-button{
+  color:var(--text-soft);
+}
+
+.close-button:hover{
+  background:
+    linear-gradient(
+      135deg,
+      var(--pink),
+      var(--lime)
+    );
+
+  color:#FFFFFF;
+}
+
+/* =========================
+   NOTICE
+   ========================= */
+
+.notice{
+  background:
+    linear-gradient(
+      135deg,
+      #FBE8ED,
+      #F1F5DD
+    );
+
+  border-color:rgba(234,156,175,.55);
+  color:var(--text-dark);
+}
+
+.notice.error{
+  background:
+    linear-gradient(
+      135deg,
+      #F8E0E6,
+      #F4E8E9
+    );
+
+  border-color:var(--rose);
+  color:#763D4F;
+}
+
+/* =========================
+   STOCK MOVEMENT
+   ========================= */
+
+.movement-type.receive{
+  background:
+    linear-gradient(
+      135deg,
+      #E5F0C6,
+      #F2E9DD
+    );
+
+  color:#617536;
+}
+
+.movement-type.consume{
+  background:
+    linear-gradient(
+      135deg,
+      #F8E0E6,
+      #F1E8EC
+    );
+
+  color:#8B4C5D;
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruang Rasa | Penjualan & Persediaan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand" aria-label="Logo Ruang Rasa"><div class="brand-art"><svg viewBox="0 0 150 72" role="img" aria-hidden="true"><g class="logo-drawing"><path d="M69 18h37v7c0 12-8 19-18 19S69 37 69 25v-7Z"/><path d="M66 18h43M72 14c2-5 29-5 32 0v4H72v-4ZM78 10c1-4 17-4 19 0"/><path d="M106 23h7c7 0 7 12 0 12h-7"/><path d="M28 51c-9-3-16-10-13-19 3-8 12-13 23-13 10 0 18 6 25 13-7-2-11 2-14 7-4 6-10 12-21 12Z"/><path d="M18 33c7-3 13-1 20 3M23 25c5 1 9 4 13 8M36 21c-1 6-1 12 3 18"/></g></svg></div><div class="brand-copy"><strong>ruang rasa</strong><small>COFFEE &amp; CAFE · EST. 2026</small></div></div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span> Ringkasan</button>
+        <button class="nav-item" data-view="orders"><span>↗</span> Pesanan Cafe</button>
+        <button class="nav-item" data-view="inventory"><span>◫</span> Bahan Baku</button>
+        <button class="nav-item" data-view="production"><span>✦</span> Produksi</button>
+      </nav>
+      <div class="sidebar-footer"><span class="status-dot"></span><span id="connection-status">Mode lokal aktif</span><small id="connection-mode">Data tersimpan di browser</small></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow" id="current-date"></p><h1 id="page-title">Ruang Rasa</h1></div><div class="user-chip"><span>RR</span><div><strong>Admin Operasional</strong><small>PKP · PPN 11%</small></div></div></header>
+      <div id="notice" class="notice" hidden></div>
+
+      <section id="dashboard-view" class="view active-view">
+        <div class="hero-strip"><div><span class="eyebrow light">HARI INI DI DAPUR</span><h2>Rasa yang konsisten,<br><em>stok yang terkendali.</em></h2></div><div class="hero-note"><span class="hero-icon">✳</span><span>Catatan dapur<br><strong id="low-stock-note">Memuat status stok...</strong></span></div></div>
+        <div class="metrics"><article><span class="metric-label">Penjualan bulan ini</span><strong id="metric-sales">Rp 0</strong><small><b class="positive">●</b> dari pesanan cafe</small></article><article><span class="metric-label">Pesanan aktif</span><strong id="metric-orders">0</strong><small>perlu ditindaklanjuti</small></article><article><span class="metric-label">Bahan perlu restock</span><strong id="metric-stock">0</strong><small>di bawah minimum</small></article><article><span class="metric-label">Produk siap jual</span><strong id="metric-products">0</strong><small>menu tersedia</small></article></div>
+        <div class="content-grid"><section class="panel wide"><div class="panel-heading"><div><span class="eyebrow">TERBARU</span><h3>Pesanan masuk</h3></div><button class="text-button" data-view-link="orders">Lihat semua ↗</button></div><div id="recent-orders" class="order-list"></div></section><section class="panel"><div class="panel-heading"><div><span class="eyebrow">PERHATIAN</span><h3>Stok menipis</h3></div><span class="count-badge" id="stock-count">0</span></div><div id="low-stock-list" class="stock-list"></div></section></div>
+      </section>
+
+      <section id="orders-view" class="view"><div class="section-heading"><div><span class="eyebrow">PENJUALAN</span><h2>Pesanan cafe</h2><p>Catat pesanan makanan dan minuman dari cafe pelanggan.</p></div><button class="primary-button" id="open-order">+ Pesanan baru</button></div><div class="toolbar"><input id="order-search" type="search" placeholder="Cari cafe pelanggan..."></div><div class="panel"><div id="orders-table" class="table-wrap"></div></div></section>
+
+      <section id="inventory-view" class="view"><div class="section-heading"><div><span class="eyebrow">PERSEDIAAN</span><h2>Bahan baku</h2><p>Pantau stok, kedaluwarsa, dan penerimaan bahan dari supplier.</p></div><div class="button-group"><button class="secondary-button" id="open-material">+ Bahan baku</button><button class="primary-button" id="open-purchase">+ Terima pembelian</button></div></div><div id="stock-monitor" class="monitor-grid"></div><div class="toolbar"><input id="material-search" type="search" placeholder="Cari bahan atau supplier..."></div><div class="panel"><div id="inventory-table" class="table-wrap"></div></div><div class="panel movement-panel"><div class="panel-heading"><div><span class="eyebrow">AUDIT STOK</span><h3>Riwayat pergerakan bahan</h3></div><select id="movement-filter" class="status-select"><option value="all">Semua bahan</option></select></div><div id="movement-table" class="table-wrap"></div></div></section>
+
+      <section id="production-view" class="view"><div class="section-heading"><div><span class="eyebrow">DAPUR</span><h2>Produksi menu</h2><p>Kurangi bahan baku dan tambahkan stok produk jadi dari resep.</p></div><button class="secondary-button" id="open-product">+ Produk menu</button></div><div class="production-layout"><div class="panel production-card"><span class="eyebrow">BATCH BARU</span><h3>Catat hasil produksi</h3><form id="production-form"><label>Produk<select id="production-product" required></select></label><label>Jumlah dibuat<input id="production-quantity" type="number" min="1" value="1" required></label><button class="primary-button" type="submit">Simpan produksi <span>→</span></button></form></div><div class="panel"><div class="panel-heading"><div><span class="eyebrow">MENU</span><h3>Stok produk jadi</h3></div></div><div class="toolbar compact"><input id="product-search" type="search" placeholder="Cari produk..."></div><div id="product-list" class="product-list"></div></div></div></section>
+    </main>
+  </div>
+
+  <dialog id="order-dialog"><form method="dialog" id="order-form"><button class="close-button" value="cancel" aria-label="Tutup">×</button><span class="eyebrow">PESANAN BARU</span><h2>Siapkan pesanan cafe</h2><label>Nama cafe pelanggan<input id="cafe-name" required placeholder="Contoh: Kopi Sore"></label><label>Produk<select id="order-product" required></select></label><label>Jumlah<input id="order-quantity" type="number" min="1" value="1" required></label><div class="price-preview">Subtotal <strong id="order-preview">Rp 0</strong></div><button class="primary-button" type="submit">Buat pesanan →</button></form></dialog>
+  <dialog id="purchase-dialog"><form method="dialog" id="purchase-form"><button class="close-button" value="cancel" aria-label="Tutup">×</button><span class="eyebrow">PENERIMAAN BAHAN</span><h2>Terima pembelian</h2><label>Bahan baku<select id="purchase-material" required></select></label><label>Jumlah diterima<input id="purchase-quantity" type="number" min="0.01" step="0.01" required></label><div class="form-hint">Stok akan langsung bertambah setelah disimpan.</div><button class="primary-button" type="submit">Tambah ke stok →</button></form></dialog>
+  <dialog id="material-dialog"><form method="dialog" id="material-form"><button type="button" class="close-button" value="cancel" aria-label="Tutup">×</button><span class="eyebrow">MASTER BAHAN BAKU</span><h2 id="material-dialog-title">Tambah bahan baku</h2><input id="material-id" type="hidden"><label>Nama bahan<input id="material-name" required></label><div class="form-columns"><label>Satuan<input id="material-unit" required placeholder="kg, liter, pcs"></label><label>Stok awal<input id="material-stock" type="number" min="0" step="0.01" value="0" required></label></div><div class="form-columns"><label>Minimum stok<input id="material-minimum" type="number" min="0" step="0.01" value="0" required></label><label>Kedaluwarsa<input id="material-expiry" type="date"></label></div><label>Supplier<input id="material-supplier"></label><button class="primary-button" type="submit">Simpan bahan →</button></form></dialog>
+  <dialog id="product-dialog"><form method="dialog" id="product-form"><button class="close-button" value="cancel" aria-label="Tutup">×</button><span class="eyebrow">MASTER PRODUK</span><h2 id="product-dialog-title">Tambah produk menu</h2><input id="product-id" type="hidden"><label>Nama produk<input id="product-name" required></label><div class="form-columns"><label>Kategori<select id="product-category"><option>Makanan</option><option>Minuman</option></select></label><label>Harga jual<input id="product-price" type="number" min="0" step="100" required></label></div><label>Stok produk jadi<input id="product-stock" type="number" min="0" step="1" value="0" required></label><div class="form-hint">Resep awal dapat diatur di database Supabase pada kolom recipe.</div><button class="primary-button" type="submit">Simpan produk →</button></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
