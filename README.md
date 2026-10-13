@@ -2,6 +2,8 @@
 
 Web app sederhana untuk penjualan makanan/minuman ke cafe dan persediaan bahan baku.
 
+Web Demo https://christabelalodia.github.io/Sistem-Penjualan-dan-Persediaan-Cafe/
+
 ## Menjalankan di komputer
 
 Cara tercepat adalah membuka `frontend/index.html` di browser. Aplikasi langsung berjalan dalam mode lokal dan menyimpan data di browser/perangkat tersebut. Data mode lokal tidak otomatis dibagikan ke pengguna lain.
